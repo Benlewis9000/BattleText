@@ -4,6 +4,13 @@ import java.util.Scanner;
 
 import static github.benlewis9000.battleText.Handlers.delay;
 
+/*
+
+       PC -> Laptop (test)
+       22:48
+
+ */
+
 public class Main {
     public static void main(String[] args) {
 
