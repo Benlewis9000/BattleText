@@ -52,7 +52,7 @@ public class Enemy {
         // Announce Enemy's go
         System.out.println("\nENEMY:");
 
-        int r = new Random().nextInt(4);
+        int r = new Random().nextInt(2);
         int m = new Random().nextInt(2);
         m++;
         int dmg = r + difficulty*m;

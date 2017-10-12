@@ -2,6 +2,8 @@ package github.benlewis9000.battleText;
 
 import java.util.Scanner;
 
+import static github.benlewis9000.battleText.Handlers.delay;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -15,10 +17,13 @@ public class Main {
 
         // Create users Player
 
-        Player p = new Player(n, 20, 20, 2, 1);
+        Player p = new Player(n, 5, 20, 2, 1);
+
+        // Roll instructions
+        instructions(p);
 
         // Print users stats
-        p.getStats();
+        p.printStats();
 
         /*
              Enter Game Loop
@@ -27,7 +32,7 @@ public class Main {
         while (gameLive) {
 
             System.out.println("What would you like to do?");
-            System.out.println("  - Battle\n  - Stats\n  - Quit");
+            System.out.println("  - Battle\n  - Stats\n  - Quit\n");
 
             String s = sc.nextLine();
 
@@ -42,7 +47,7 @@ public class Main {
 
                     // Print player stats (maybe inv (potions, weapons) in future)
 
-                    p.getStats();
+                    p.printStats();
                     break;
 
                 case "quit":
@@ -52,8 +57,24 @@ public class Main {
 
                     gameLive = false;
                     break;
+
             }
         }
+    }
+
+    public static void instructions(Player p){
+
+        delay(2000);
+        System.out.println("\nWelcome, " + p.getName() + ", to BattleText, " +
+                "a\nsimple text based fighting game.");
+        delay(4000);
+        System.out.println("\nWhen a choice is to be made, a\nlist will appear. Please enter\nthe text exactly as you see to\nmake your choice.");
+        delay(6000);
+        System.out.println("\nThe game will now begin.");
+        delay(2000);
+        System.out.println("Good luck!");
+        delay(2000);
+
     }
 
 }

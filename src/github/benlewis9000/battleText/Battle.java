@@ -11,6 +11,8 @@ import static github.benlewis9000.battleText.Handlers.delay;
 public class Battle {
 
     Enemy e = new Enemy(1);
+    boolean battleLive = true;
+    // When false, battle ends. Otherwise, rounds loop.
 
     /*
           New Battle
@@ -18,7 +20,6 @@ public class Battle {
 
     public Battle (Player p) {
 
-        boolean battleLive = true;
         // When false, battle ends. Otherwise, rounds loop.
 
         while (battleLive){
@@ -51,7 +52,7 @@ public class Battle {
                 System.out.println("\nWhat would you like to do?");
                 System.out.println("  - Fight");
                 System.out.println("  - Potion");
-                System.out.println("  - Run");
+                System.out.println("  - Run\n");
 
                 //    Get Player input...
 
@@ -73,7 +74,9 @@ public class Battle {
 
                         // Check for enemy death
                         if (endHealth <= 0) {
-                            System.out.println("  Well done, you destroyed the enemy!");
+                            System.out.println("  Well done, you destroyed the enemy!\nFight Over: WIN");
+
+                            p.incStrength(p);
 
                             // End round and fight
                             roundLive = false;
@@ -90,10 +93,11 @@ public class Battle {
                         // Have choice in another loop seperate to round, seperate to battle?
 
                     case "run":
-                        leaveBattle(p);
+                        leaveBattle(p, this);
                         roundLive = false;
-                        battleLive = false;
                         break;
+                    default :
+                        continue;
                 }
 
                 // If the player leaves, exit BEFORE the enemy can attack
@@ -115,7 +119,10 @@ public class Battle {
                 delay (500);
                 // Check for player death. If health = 0, end fight
                 if (endHealth <= 0){
-                    System.out.println("\nYou have been defeated.\nFight Over: LOSS");
+                    System.out.println("\nYou have been defeated.\nFight Over: LOSS\n");
+                    delay(1000);
+                    leaveBattle(p, this);
+                    break;
                 }
                 else {
                     System.out.println("  You have " + endHealth + " remaining.");
@@ -130,9 +137,9 @@ public class Battle {
         }
     }
 
-    public void leaveBattle(Player p) {
+    public void leaveBattle(Player p, Battle b) {
         p.setHealth(p.getMaxHealth());
-        System.out.println("You have fled the battle.");
+        b.battleLive = false;
         // Add currency and run penalty? or Lives?
     }
 

@@ -66,9 +66,11 @@ public class Player {
     public void setStrength(int strength) {
         if (strength > 10){
             this.strength = 10;
-            System.out.println("// Strength maxed, set to 10");
+            System.out.println("// Strength maxed, set to 10 //");
         }
-        else this.strength = strength;
+        else {
+            this.strength = strength;
+        }
 
         // DEBUG System.out.println(this.getName() + "'s Strength is now " + this.getStrength());
     }
@@ -99,18 +101,18 @@ public class Player {
     }
 
 
-    public void getStats (){
+    public void printStats (){
         String nme = this.getName();
 
         int hth = this.getHealth();
         int str = this.getStrength();
         int lvl = this.getLevel();
 
-        System.out.println("-*#   " + nme + "'s Stats   #*-");
+        System.out.println("\n-*#   " + nme + "'s Stats   #*-");
         System.out.println("    Health: " + String.valueOf(hth));
         System.out.println("    Strength: " + String.valueOf(str));
         System.out.println("    Level: " + String.valueOf(lvl));
-        System.out.println("#*-------------------*#");
+        System.out.println("#*-------------------*#\n");
 
     }
 
@@ -131,8 +133,11 @@ public class Player {
 
         if (!(chance <= 1)) {
 
+            int ranDmg = new Random().nextInt(3);
+            int dmg = p.getStrength() + ranDmg - 1;
+
             // Hit
-            e.setHealth(e.getHealth() - (p.getStrength()));
+            e.setHealth(e.getHealth() - dmg);
 
             delay(500);
             System.out.println("  HIT!");
@@ -153,5 +158,13 @@ public class Player {
 
             System.out.println("  Enemy's health remains at " + e.getHealth() + ".");
         }
+    }
+
+    public void incStrength(Player p){
+        p.setStrength(p.getStrength()+1);
+
+        delay(500);
+        System.out.println("\nYour strength has increased!\nNew Strength: " + p.getStrength());
+
     }
 }
