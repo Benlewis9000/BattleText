@@ -3,6 +3,8 @@ package github.benlewis9000.battleText;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+import static github.benlewis9000.battleText.Handlers.delay;
+
 public class Player {
 
     String name;
@@ -132,59 +134,22 @@ public class Player {
             // Hit
             e.setHealth(e.getHealth() - (p.getStrength()));
 
-            System.out.println("  HIT!\n  You have dealt " + p.getStrength() + " dmg.");
-
-            try {
-
-                TimeUnit.MILLISECONDS.sleep(500);
-
-            } catch (InterruptedException ex){
-
-                System.out.println("Pause failed:");
-                System.out.println(ex.getMessage());
-
-            }
-
-            try {
-
-                TimeUnit.MILLISECONDS.sleep(500);
-
-            } catch (InterruptedException ex){
-
-                System.out.println("Pause failed:");
-                System.out.println(ex.getMessage());
-
-            }
-
+            delay(500);
+            System.out.println("  HIT!");
+            delay(500);
+            System.out.println("  You have dealt " + p.getStrength() + " dmg.");
+            delay(500);
             System.out.println("  Enemy's health is now at " + e.getHealth() + ".");
 
         } else {
 
             // Miss
 
-            try {
-
-                TimeUnit.MILLISECONDS.sleep(500);
-
-            } catch (InterruptedException ex){
-
-                System.out.println("Pause failed:");
-                System.out.println(ex.getMessage());
-
-            }
+            delay(500);
 
             System.out.println("  Miss...");
 
-            try {
-
-                TimeUnit.MILLISECONDS.sleep(500);
-
-            } catch (InterruptedException ex){
-
-                System.out.println("Pause failed:");
-                System.out.println(ex.getMessage());
-
-            }
+            delay(500);
 
             System.out.println("  Enemy's health remains at " + e.getHealth() + ".");
         }

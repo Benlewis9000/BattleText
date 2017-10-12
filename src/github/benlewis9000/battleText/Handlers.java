@@ -2,7 +2,7 @@ package github.benlewis9000.battleText;
 
 public class Handlers {
 
-    public void Delay(int milliseconds){
+    public static void delay(int milliseconds){
         int m = milliseconds;
 
         try {

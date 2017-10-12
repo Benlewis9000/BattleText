@@ -1,7 +1,8 @@
 package github.benlewis9000.battleText;
 
-import github.benlewis9000.battleText.Handlers;
 import java.util.Random;
+
+import static github.benlewis9000.battleText.Handlers.delay;
 
 public class Enemy {
 
@@ -47,10 +48,9 @@ public class Enemy {
 
     public void attack (Player p, Enemy e){
 
+
         // Announce Enemy's go
         System.out.println("\nENEMY:");
-
-        Delay(1000);
 
         int r = new Random().nextInt(4);
         int m = new Random().nextInt(2);
@@ -58,6 +58,9 @@ public class Enemy {
         int dmg = r + difficulty*m;
 
         p.setHealth(p.getHealth() - dmg);
+
+        // DELAY 1 second
+        delay(200);
         System.out.println("  Ouch! The enemy dealt '" + dmg + "' dmg.");
     }
 }

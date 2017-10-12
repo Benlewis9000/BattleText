@@ -6,6 +6,8 @@ import github.benlewis9000.battleText.Player;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
+import static github.benlewis9000.battleText.Handlers.delay;
+
 public class Battle {
 
     Enemy e = new Enemy(1);
@@ -21,16 +23,7 @@ public class Battle {
 
         while (battleLive){
 
-            try {
-
-                TimeUnit.MILLISECONDS.sleep(500);
-
-            } catch (InterruptedException ex){
-
-                System.out.println("Pause failed:");
-                System.out.println(ex.getMessage());
-
-            }
+            //delay(2000);
 
             // Get enemies difficulty
             int d = e.getDifficulty();
@@ -43,6 +36,7 @@ public class Battle {
             while (roundLive) {
 
                 //    Announce round no.
+                delay(2000);
 
                 System.out.println("\n#-  Round: " + String.valueOf(round) + " -#");
 
@@ -52,7 +46,9 @@ public class Battle {
 
                 //    List player options
 
-                System.out.println("What would you like to do next?");
+                delay(1000);
+
+                System.out.println("\nWhat would you like to do?");
                 System.out.println("  - Fight");
                 System.out.println("  - Potion");
                 System.out.println("  - Run");
@@ -67,16 +63,7 @@ public class Battle {
                 switch (s.toLowerCase()) {
                     case "fight":
 
-                        try {
-
-                            TimeUnit.MILLISECONDS.sleep(500);
-
-                        } catch (InterruptedException ex){
-
-                            System.out.println("Pause failed:");
-                            System.out.println(ex.getMessage());
-
-                        }
+                        delay(500);
 
                         // Attack enemy
                         p.attack(p, e);
@@ -119,21 +106,13 @@ public class Battle {
 
                 // Enemy attacks player
 
-                try {
-
-                    TimeUnit.MILLISECONDS.sleep(1000);
-
-                } catch (InterruptedException ex){
-
-                    System.out.println("Pause failed:");
-                    System.out.println(ex.getMessage());
-
-                }
+                delay(1000);
 
                 e.attack(p, e);
 
                 int endHealth = p.getHealth();
 
+                delay (500);
                 // Check for player death. If health = 0, end fight
                 if (endHealth <= 0){
                     System.out.println("\nYou have been defeated.\nFight Over: LOSS");
@@ -145,16 +124,8 @@ public class Battle {
                 // increment round
                 round++;
 
-                try {
-
-                    TimeUnit.MILLISECONDS.sleep(2000);
-
-                } catch (InterruptedException ex){
-
-                    System.out.println("Pause failed:");
-                    System.out.println(ex.getMessage());
-
-                }
+                // DELAY 2 seconds
+                //delay(2000);
             }
         }
     }
