@@ -1,6 +1,7 @@
-package me.benLewis.net;
+package github.benlewis9000.battleText;
 
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class Player {
 
@@ -132,13 +133,59 @@ public class Player {
             e.setHealth(e.getHealth() - (p.getStrength()));
 
             System.out.println("  HIT!\n  You have dealt " + p.getStrength() + " dmg.");
+
+            try {
+
+                TimeUnit.MILLISECONDS.sleep(500);
+
+            } catch (InterruptedException ex){
+
+                System.out.println("Pause failed:");
+                System.out.println(ex.getMessage());
+
+            }
+
+            try {
+
+                TimeUnit.MILLISECONDS.sleep(500);
+
+            } catch (InterruptedException ex){
+
+                System.out.println("Pause failed:");
+                System.out.println(ex.getMessage());
+
+            }
+
             System.out.println("  Enemy's health is now at " + e.getHealth() + ".");
 
         } else {
 
             // Miss
 
+            try {
+
+                TimeUnit.MILLISECONDS.sleep(500);
+
+            } catch (InterruptedException ex){
+
+                System.out.println("Pause failed:");
+                System.out.println(ex.getMessage());
+
+            }
+
             System.out.println("  Miss...");
+
+            try {
+
+                TimeUnit.MILLISECONDS.sleep(500);
+
+            } catch (InterruptedException ex){
+
+                System.out.println("Pause failed:");
+                System.out.println(ex.getMessage());
+
+            }
+
             System.out.println("  Enemy's health remains at " + e.getHealth() + ".");
         }
     }

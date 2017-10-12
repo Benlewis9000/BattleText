@@ -1,7 +1,10 @@
-package me.benLewis.net;
+package github.benlewis9000.battleText;
 
-import java.util.Random;
+import github.benlewis9000.battleText.Enemy;
+import github.benlewis9000.battleText.Player;
+
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Battle {
 
@@ -17,6 +20,17 @@ public class Battle {
         // When false, battle ends. Otherwise, rounds loop.
 
         while (battleLive){
+
+            try {
+
+                TimeUnit.MILLISECONDS.sleep(500);
+
+            } catch (InterruptedException ex){
+
+                System.out.println("Pause failed:");
+                System.out.println(ex.getMessage());
+
+            }
 
             // Get enemies difficulty
             int d = e.getDifficulty();
@@ -52,6 +66,17 @@ public class Battle {
 
                 switch (s.toLowerCase()) {
                     case "fight":
+
+                        try {
+
+                            TimeUnit.MILLISECONDS.sleep(500);
+
+                        } catch (InterruptedException ex){
+
+                            System.out.println("Pause failed:");
+                            System.out.println(ex.getMessage());
+
+                        }
 
                         // Attack enemy
                         p.attack(p, e);
@@ -93,6 +118,18 @@ public class Battle {
                  */
 
                 // Enemy attacks player
+
+                try {
+
+                    TimeUnit.MILLISECONDS.sleep(1000);
+
+                } catch (InterruptedException ex){
+
+                    System.out.println("Pause failed:");
+                    System.out.println(ex.getMessage());
+
+                }
+
                 e.attack(p, e);
 
                 int endHealth = p.getHealth();
@@ -107,6 +144,17 @@ public class Battle {
 
                 // increment round
                 round++;
+
+                try {
+
+                    TimeUnit.MILLISECONDS.sleep(2000);
+
+                } catch (InterruptedException ex){
+
+                    System.out.println("Pause failed:");
+                    System.out.println(ex.getMessage());
+
+                }
             }
         }
     }

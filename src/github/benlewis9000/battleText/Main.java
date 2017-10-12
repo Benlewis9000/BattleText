@@ -1,4 +1,4 @@
-package me.benLewis.net;
+package github.benlewis9000.battleText;
 
 import java.util.Scanner;
 

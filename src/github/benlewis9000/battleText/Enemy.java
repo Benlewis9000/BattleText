@@ -1,7 +1,7 @@
-package me.benLewis.net;
+package github.benlewis9000.battleText;
 
+import github.benlewis9000.battleText.Handlers;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 public class Enemy {
 
@@ -50,8 +50,7 @@ public class Enemy {
         // Announce Enemy's go
         System.out.println("\nENEMY:");
 
-        // Throws InterruptedException ? >>
-        // TimeUnit.SECONDS.sleep(1);
+        Delay(1000);
 
         int r = new Random().nextInt(4);
         int m = new Random().nextInt(2);
