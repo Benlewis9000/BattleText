@@ -97,6 +97,7 @@ public class Battle {
                         roundLive = false;
                         break;
                     default :
+                        System.out.println("ERROR: Command not recognised.");
                         continue;
                 }
 

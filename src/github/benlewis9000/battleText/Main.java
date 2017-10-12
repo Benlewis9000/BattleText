@@ -17,7 +17,7 @@ public class Main {
 
         // Create users Player
 
-        Player p = new Player(n, 5, 20, 2, 1);
+        Player p = new Player(n, 20, 20, 2, 1);
 
         // Roll instructions
         instructions(p);

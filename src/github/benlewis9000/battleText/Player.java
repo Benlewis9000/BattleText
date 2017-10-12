@@ -142,7 +142,7 @@ public class Player {
             delay(500);
             System.out.println("  HIT!");
             delay(500);
-            System.out.println("  You have dealt " + p.getStrength() + " dmg.");
+            System.out.println("  You have dealt " + dmg + " dmg.");
             delay(500);
             System.out.println("  Enemy's health is now at " + e.getHealth() + ".");
 
