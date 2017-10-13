@@ -6,8 +6,15 @@ import static github.benlewis9000.battleText.Handlers.delay;
 
 public class Enemy {
 
-    int difficulty;
-    int health;
+    private int difficulty;
+    private int health;
+
+
+    public Enemy (int difficulty){
+        this.setDifficulty(difficulty);
+        int health = new Random().nextInt(10) + difficulty * 10;
+        this.setHealth(health);
+    }
 
     public int getDifficulty() {
         return difficulty;
@@ -39,15 +46,7 @@ public class Enemy {
         this.health = health;
     }
 
-    public Enemy (int difficulty){
-        this.setDifficulty(difficulty);
-        int h = new Random().nextInt(10) + difficulty * 10;
-        // DEBUG System.out.println(String.valueOf(h));
-        this.setHealth(h);
-    }
-
-    public void attack (Player p, Enemy e){
-
+    public void attack (Player p){
 
         // Announce Enemy's go
         System.out.println("\nENEMY:");
@@ -63,4 +62,12 @@ public class Enemy {
         delay(200);
         System.out.println("  Ouch! The enemy dealt '" + dmg + "' dmg.");
     }
+
+    public boolean isDead(){
+        if (this.getHealth() <= 0){
+            return true;
+        }
+        else return false;
+    }
+
 }

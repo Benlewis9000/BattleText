@@ -26,10 +26,8 @@ public class Main {
 
         Player p = new Player(n, 20, 20, 2, 1);
 
-        // Roll instructions
-        instructions(p);
+        printInstructions(p);
 
-        // Print users stats
         p.printStats();
 
         /*
@@ -69,9 +67,9 @@ public class Main {
         }
     }
 
-    public static void instructions(Player p){
+    public static void printInstructions(Player p){
 
-        delay(2000);
+        delay(500);
         System.out.println("\nWelcome, " + p.getName() + ", to BattleText, " +
                 "a\nsimple text based fighting game.");
         delay(4000);

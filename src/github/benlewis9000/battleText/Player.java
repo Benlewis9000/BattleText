@@ -7,11 +7,22 @@ import static github.benlewis9000.battleText.Handlers.delay;
 
 public class Player {
 
-    String name;
-    int health;
-    int maxHealth;
-    int strength;
-    int level;
+    private String name;
+    private int health;
+    private int maxHealth;
+    private int strength;
+    private int level;
+
+    public Player (String name, int health, int maxHealth, int strength, int level){
+        this.setName(name);
+
+        // Initialise maxHealth before health
+        this.setMaxHealth(maxHealth);
+        this.setHealth(health);
+
+        this.setStrength(strength);
+        this.setLevel(level);
+    }
 
     /*
           Name
@@ -89,17 +100,6 @@ public class Player {
 
     /*          Player            */
 
-    public Player (String name, int health, int maxHealth, int strength, int level){
-        this.setName(name);
-
-        // Initialise maxHealth before health
-        this.setMaxHealth(maxHealth);
-        this.setHealth(health);
-
-        this.setStrength(strength);
-        this.setLevel(level);
-    }
-
 
     public void printStats (){
         String nme = this.getName();
@@ -116,35 +116,29 @@ public class Player {
 
     }
 
-    public void levelUp(){
-        int newLvl = this.getLevel() + 1;
-        System.out.println("\n" + this.getName() + " has levelled up!\nNew level: " + newLvl);
-        this.setLevel(newLvl);
-    }
-
-    public void attack(Player p, Enemy e){
+    public void attack(Enemy enemy){
 
         // Announce Player's go
-        System.out.println(p.getName().toUpperCase() + ":");
+        System.out.println(this.getName().toUpperCase() + ":");
 
         // Randomiser to see if attack hits
         int r = new Random().nextInt(14);
-        int chance = r - e.getDifficulty();
+        int chance = r - enemy.getDifficulty();
 
         if (!(chance <= 1)) {
 
             int ranDmg = new Random().nextInt(3);
-            int dmg = p.getStrength() + ranDmg - 1;
+            int dmg = this.getStrength() + ranDmg - 1;
 
             // Hit
-            e.setHealth(e.getHealth() - dmg);
+            enemy.setHealth(enemy.getHealth() - dmg);
 
             delay(500);
             System.out.println("  HIT!");
             delay(500);
             System.out.println("  You have dealt " + dmg + " dmg.");
             delay(500);
-            System.out.println("  Enemy's health is now at " + e.getHealth() + ".");
+            System.out.println("  Enemy's health is now at " + enemy.getHealth() + ".");
 
         } else {
 
@@ -156,15 +150,27 @@ public class Player {
 
             delay(500);
 
-            System.out.println("  Enemy's health remains at " + e.getHealth() + ".");
+            System.out.println("  Enemy's health remains at " + enemy.getHealth() + ".");
         }
     }
 
-    public void incStrength(Player p){
-        p.setStrength(p.getStrength()+1);
+    public void incStrength(){
+        this.setStrength(this.getStrength()+1);
 
         delay(500);
-        System.out.println("\nYour strength has increased!\nNew Strength: " + p.getStrength());
+        System.out.println("\nYour strength has increased!\nNew Strength: " + this.getStrength());
+    }
 
+    public void levelUp(){
+        int newLvl = this.getLevel() + 1;
+        System.out.println("\n" + this.getName() + " has levelled up!\nNew level: " + newLvl);
+        this.setLevel(newLvl);
+    }
+
+    public boolean isDead(){
+        if (this.getHealth() <= 0){
+            return true;
+        }
+        else return false;
     }
 }

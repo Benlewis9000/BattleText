@@ -24,11 +24,6 @@ public class Battle {
 
         while (battleLive){
 
-            //delay(2000);
-
-            // Get enemies difficulty
-            int d = e.getDifficulty();
-
             // Set round counter
             int round = 1;
 
@@ -67,24 +62,24 @@ public class Battle {
                         delay(500);
 
                         // Attack enemy
-                        p.attack(p, e);
+                        p.attack(e);
 
                         // Get enemy's health
-                        int endHealth = e.getHealth();
+                        //int endHealth = e.getHealth();
 
                         // Check for enemy death
-                        if (endHealth <= 0) {
+                        if (e.isDead()) {
                             System.out.println("  Well done, you destroyed the enemy!\nFight Over: WIN");
 
-                            p.incStrength(p);
+                            p.incStrength();
 
                             // End round and fight
                             roundLive = false;
                             battleLive = false;
 
                         }
-
                         break;
+                        
                     case "potion":
                         System.out.println("You do not have any potions!");
                         continue;
@@ -92,10 +87,15 @@ public class Battle {
                         // Perhaps enter a new loop object? this:
                         // Have choice in another loop seperate to round, seperate to battle?
 
+                    case "stats":
+                        p.printStats();
+                        continue;
+
                     case "run":
-                        leaveBattle(p, this);
+                        leaveBattle(p);
                         roundLive = false;
                         break;
+
                     default :
                         System.out.println("ERROR: Command not recognised.");
                         continue;
@@ -113,20 +113,18 @@ public class Battle {
 
                 delay(1000);
 
-                e.attack(p, e);
-
-                int endHealth = p.getHealth();
+                e.attack(p);
 
                 delay (500);
-                // Check for player death. If health = 0, end fight
-                if (endHealth <= 0){
+
+                if (p.isDead()){
                     System.out.println("\nYou have been defeated.\nFight Over: LOSS\n");
                     delay(1000);
-                    leaveBattle(p, this);
+                    leaveBattle(p);
                     break;
                 }
                 else {
-                    System.out.println("  You have " + endHealth + " remaining.");
+                    System.out.println("  You have " + p.getHealth() + " remaining.");
                 }
 
                 // increment round
@@ -138,9 +136,9 @@ public class Battle {
         }
     }
 
-    public void leaveBattle(Player p, Battle b) {
+    public void leaveBattle(Player p) {
         p.setHealth(p.getMaxHealth());
-        b.battleLive = false;
+        this.battleLive = false;
         // Add currency and run penalty? or Lives?
     }
 
