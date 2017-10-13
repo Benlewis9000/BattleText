@@ -20,8 +20,11 @@ public class Battle {
 
     public Battle (Player p) {
 
-        // When false, battle ends. Otherwise, rounds loop.
+        startBattle(p);
 
+    }
+
+    public void startBattle(Player p){
         while (battleLive){
 
             // Set round counter
@@ -79,7 +82,7 @@ public class Battle {
 
                         }
                         break;
-                        
+
                     case "potion":
                         System.out.println("You do not have any potions!");
                         continue;
