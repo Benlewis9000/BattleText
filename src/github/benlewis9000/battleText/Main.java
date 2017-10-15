@@ -13,11 +13,11 @@ public class Main {
         // User enters name
 
         System.out.println("\nPlease enter your name:");
-        String n = sc.nextLine();
+        String playerName = sc.nextLine();
 
         // Create users Player
 
-        Player p = new Player(n, 20, 20, 2, 1);
+        Player p = new Player(playerName, 20, 20, 2, 1);
 
         printInstructions(p);
 

@@ -13,7 +13,16 @@ public class Player {
     private int strength;
     private int level;
 
+    /**
+     * @param name The name the player will be referred to as.
+     * @param health The starting health of the player.
+     * @param maxHealth The limit for the players health.
+     * @param strength Modifier that affects players attack damage, increments after each win.
+     * @param level WIP
+     */
+
     public Player (String name, int health, int maxHealth, int strength, int level){
+
         this.setName(name);
 
         // Initialise maxHealth before health
