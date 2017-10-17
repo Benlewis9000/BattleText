@@ -1,8 +1,10 @@
 package github.benlewis9000.battleText;
 
+import github.benlewis9000.battleText.objects.Player;
+
 import java.util.Scanner;
 
-import static github.benlewis9000.battleText.Handlers.delay;
+import static github.benlewis9000.battleText.util.Handlers.delay;
 
 public class Main {
     public static void main(String[] args) {

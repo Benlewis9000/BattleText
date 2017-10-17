@@ -1,8 +1,8 @@
-package github.benlewis9000.battleText;
+package github.benlewis9000.battleText.objects;
 
 import java.util.Random;
 
-import static github.benlewis9000.battleText.Handlers.delay;
+import static github.benlewis9000.battleText.util.Handlers.delay;
 
 public class Enemy {
 

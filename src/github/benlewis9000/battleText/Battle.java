@@ -1,148 +1,137 @@
 package github.benlewis9000.battleText;
 
-import github.benlewis9000.battleText.Enemy;
-import github.benlewis9000.battleText.Player;
+import github.benlewis9000.battleText.objects.Enemy;
+import github.benlewis9000.battleText.objects.Player;
 
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
-import static github.benlewis9000.battleText.Handlers.delay;
+import static github.benlewis9000.battleText.util.Handlers.delay;
 
 public class Battle {
 
-    Enemy e = new Enemy(1);
-    boolean battleLive = true;
-    // When false, battle ends. Otherwise, rounds loop.
+	Enemy e = new Enemy(1);
+	boolean battleLive = true;
+	// When false, battle ends. Otherwise, rounds loop.
 
     /*
-          New Battle
+		  New Battle
      */
 
-    public Battle (Player p) {
+	public Battle(Player p) {
 
-        startBattle(p);
+		startBattle(p);
 
-    }
+	}
 
-    public void startBattle(Player p){
-        while (battleLive){
+	public void startBattle(Player p) {
+		while (battleLive) {
+			int round = 1;
+			boolean roundLive = true;
 
-            // Set round counter
-            int round = 1;
-
-            boolean roundLive = true;
-
-            while (roundLive) {
-
-                //    Announce round no.
-                delay(2000);
-
-                System.out.println("\n#-  Round: " + String.valueOf(round) + " -#");
+			while (roundLive) {
+				delay(2000);
+				System.out.println("\n#-  Round: " + String.valueOf(round) + " -#");
 
                 /*
-                      Player's Turn
+					  Player's Turn
                  */
+				delay(1000);
 
-                //    List player options
+				System.out.println("\nWhat would you like to do?");
+				System.out.println("  - Fight");
+				System.out.println("  - Potion");
+				System.out.println("  - Run\n");
 
-                delay(1000);
+				//    Get Player input...
 
-                System.out.println("\nWhat would you like to do?");
-                System.out.println("  - Fight");
-                System.out.println("  - Potion");
-                System.out.println("  - Run\n");
+				Scanner sc = new Scanner(System.in);
+				String s = sc.nextLine();
 
-                //    Get Player input...
+				//    Carry out player command...
 
-                Scanner sc = new Scanner(System.in);
-                String s = sc.nextLine();
+				switch (s.toLowerCase()) {
+					case "fight":
 
-                //    Carry out player command...
+						delay(500);
 
-                switch (s.toLowerCase()) {
-                    case "fight":
+						// Attack enemy
+						p.attack(e);
 
-                        delay(500);
+						// Get enemy's health
+						//int endHealth = e.getHealth();
 
-                        // Attack enemy
-                        p.attack(e);
+						// Check for enemy death
+						if (e.isDead()) {
+							System.out.println("  Well done, you destroyed the enemy!\nFight Over: WIN");
 
-                        // Get enemy's health
-                        //int endHealth = e.getHealth();
+							p.incStrength();
 
-                        // Check for enemy death
-                        if (e.isDead()) {
-                            System.out.println("  Well done, you destroyed the enemy!\nFight Over: WIN");
+							// End round and fight
+							roundLive = false;
+							battleLive = false;
 
-                            p.incStrength();
+						}
+						break;
 
-                            // End round and fight
-                            roundLive = false;
-                            battleLive = false;
+					case "potion":
+						System.out.println("You do not have any potions!");
+						continue;
+						// Find a way to offer option to choose again without killing loop.
+						// Perhaps enter a new loop object? this:
+						// Have choice in another loop seperate to round, seperate to battle?
 
-                        }
-                        break;
+					case "stats":
+						p.printStats();
+						continue;
 
-                    case "potion":
-                        System.out.println("You do not have any potions!");
-                        continue;
-                        // Find a way to offer option to choose again without killing loop.
-                        // Perhaps enter a new loop object? this:
-                        // Have choice in another loop seperate to round, seperate to battle?
+					case "run":
+						leaveBattle(p);
+						roundLive = false;
+						break;
 
-                    case "stats":
-                        p.printStats();
-                        continue;
+					default:
+						System.out.println("ERROR: Command not recognised.");
+						continue;
+				}
 
-                    case "run":
-                        leaveBattle(p);
-                        roundLive = false;
-                        break;
-
-                    default :
-                        System.out.println("ERROR: Command not recognised.");
-                        continue;
-                }
-
-                // If the player leaves, exit BEFORE the enemy can attack
-                // Checks to see if battleLive is false, if so, break;
-                if (!(battleLive)) break;
+				// If the player leaves, exit BEFORE the enemy can attack
+				// Checks to see if battleLive is false, if so, break;
+				if (!(battleLive)) break;
 
                 /*
                       Enemy's Turn
                  */
 
-                // Enemy attacks player
+				// Enemy attacks player
 
-                delay(1000);
+				delay(1000);
 
-                e.attack(p);
+				e.attack(p);
 
-                delay (500);
+				delay(500);
 
-                if (p.isDead()){
-                    System.out.println("\nYou have been defeated.\nFight Over: LOSS\n");
-                    delay(1000);
-                    leaveBattle(p);
-                    break;
-                }
-                else {
-                    System.out.println("  You have " + p.getHealth() + " remaining.");
-                }
+				if (p.isDead()) {
+					System.out.println("\nYou have been defeated.\nFight Over: LOSS\n");
+					delay(1000);
+					leaveBattle(p);
+					break;
+				} else {
+					System.out.println("  You have " + p.getHealth() + " remaining.");
+				}
 
-                // increment round
-                round++;
+				// increment round
+				round++;
 
-                // DELAY 2 seconds
-                //delay(2000);
-            }
-        }
-    }
+				// DELAY 2 seconds
+				//delay(2000);
+			}
+		}
+	}
 
-    public void leaveBattle(Player p) {
-        p.setHealth(p.getMaxHealth());
-        this.battleLive = false;
-        // Add currency and run penalty? or Lives?
-    }
+	public void leaveBattle(Player p) {
+		p.setHealth(p.getMaxHealth());
+		this.battleLive = false;
+		// Add currency and run penalty? or Lives?
+	}
 
 }
