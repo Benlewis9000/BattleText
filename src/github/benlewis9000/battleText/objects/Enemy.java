@@ -5,15 +5,12 @@ import java.util.Random;
 import static github.benlewis9000.battleText.util.Handlers.delay;
 
 public class Enemy {
-
 	private int difficulty;
 	private int health;
 
-
 	public Enemy(int difficulty) {
 		this.difficulty = difficulty;
-		int health = new Random().nextInt(10) + difficulty * 10;
-		this.health = health;
+		this.health = new Random().nextInt(10) + difficulty * 10;
 	}
 
 	public int getDifficulty() {
@@ -62,9 +59,7 @@ public class Enemy {
 	}
 
 	public boolean isDead() {
-		if (this.getHealth() <= 0) {
-			return true;
-		} else return false;
+		return this.getHealth() <= 0;
 	}
 
 }
