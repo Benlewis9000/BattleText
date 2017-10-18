@@ -46,7 +46,6 @@ public class Enemy {
 
 		p.setHealth(p.getHealth() - dmg);
 
-		// DELAY 1 second
 		delay(200);
 		System.out.println("Ouch! The enemy dealt '" + dmg + "' dmg.");
 	}
