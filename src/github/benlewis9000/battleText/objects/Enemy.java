@@ -46,8 +46,9 @@ public class Enemy {
 	public void attack(Player p) {
 		System.out.println("\nENEMY:");
 
-		int r = new Random().nextInt(2);
-		int m = new Random().nextInt(2);
+		Random random = new Random();
+		int r = random.nextInt(2);
+		int m = random.nextInt(2);
 
 		int dmg = r + difficulty * (m + 1);
 
@@ -61,5 +62,4 @@ public class Enemy {
 	public boolean isDead() {
 		return this.getHealth() <= 0;
 	}
-
 }
