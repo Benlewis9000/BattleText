@@ -9,18 +9,11 @@ import static github.benlewis9000.battleText.util.Handlers.delay;
 
 public class Battle {
 
-	Enemy e = new Enemy(1);
-	boolean battleLive = true;
-	// When false, battle ends. Otherwise, rounds loop.
-
-    /*
-		  New Battle
-     */
+	private Enemy e = new Enemy(1);
+	private boolean battleLive = true;
 
 	public Battle(Player p) {
-
 		startBattle(p);
-
 	}
 
 	public void startBattle(Player p) {

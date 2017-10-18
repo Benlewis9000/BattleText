@@ -6,68 +6,65 @@ import static github.benlewis9000.battleText.util.Handlers.delay;
 
 public class Enemy {
 
-    private int difficulty;
-    private int health;
+	private int difficulty;
+	private int health;
 
 
-    public Enemy (int difficulty){
-        this.setDifficulty(difficulty);
-        int health = new Random().nextInt(10) + difficulty * 10;
-        this.setHealth(health);
-    }
+	public Enemy(int difficulty) {
+		this.difficulty = difficulty;
+		int health = new Random().nextInt(10) + difficulty * 10;
+		this.health = health;
+	}
 
-    public int getDifficulty() {
-        return difficulty;
-    }
+	public int getDifficulty() {
+		return difficulty;
+	}
 
-    public void setDifficulty(int difficulty) {
+	public void setDifficulty(int difficulty) {
 
         /*
-             Difficulty is used as a multiplier for;
+			 Difficulty is used as a multiplier for;
              - Health
              - Attack strength
              with the help of random values.
          */
 
-        if (difficulty > 3){
-            this.difficulty = 3;
-        }
-        else if (difficulty < 1) {
-            this.difficulty = 1;
-        }
-        else this.difficulty = difficulty;
-    }
+		if (difficulty > 3) {
+			this.difficulty = 3;
+		} else if (difficulty < 1) {
+			this.difficulty = 1;
+		} else {
+			this.difficulty = difficulty;
+		}
+	}
 
-    public int getHealth() {
-        return health;
-    }
+	public int getHealth() {
+		return health;
+	}
 
-    public void setHealth(int health) {
-        this.health = health;
-    }
+	public void setHealth(int health) {
+		this.health = health;
+	}
 
-    public void attack (Player p){
+	public void attack(Player p) {
+		System.out.println("\nENEMY:");
 
-        // Announce Enemy's go
-        System.out.println("\nENEMY:");
+		int r = new Random().nextInt(2);
+		int m = new Random().nextInt(2);
 
-        int r = new Random().nextInt(2);
-        int m = new Random().nextInt(2);
-        m++;
-        int dmg = r + difficulty*m;
+		int dmg = r + difficulty * (m + 1);
 
-        p.setHealth(p.getHealth() - dmg);
+		p.setHealth(p.getHealth() - dmg);
 
-        // DELAY 1 second
-        delay(200);
-        System.out.println("  Ouch! The enemy dealt '" + dmg + "' dmg.");
-    }
+		// DELAY 1 second
+		delay(200);
+		System.out.println("Ouch! The enemy dealt '" + dmg + "' dmg.");
+	}
 
-    public boolean isDead(){
-        if (this.getHealth() <= 0){
-            return true;
-        }
-        else return false;
-    }
+	public boolean isDead() {
+		if (this.getHealth() <= 0) {
+			return true;
+		} else return false;
+	}
 
 }

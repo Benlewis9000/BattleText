@@ -18,17 +18,12 @@ public class Player {
      * @param strength Modifier that affects players attack damage, increments after each win.
      * @param level WIP
      */
-
     public Player (String name, int health, int maxHealth, int strength, int level){
-
-        this.setName(name);
-
-        // Initialise maxHealth before health
-        this.setMaxHealth(maxHealth);
-        this.setHealth(health);
-
-        this.setStrength(strength);
-        this.setLevel(level);
+    	this.name = name;
+    	this.health = health;
+    	this.maxHealth = maxHealth;
+    	this.strength = strength;
+    	this.level = level;
     }
 
     /*
