@@ -26,10 +26,6 @@ public class Player {
     	this.level = level;
     }
 
-    /*
-          Name
-     */
-
     public String getName() {
         return name;
     }
@@ -37,10 +33,6 @@ public class Player {
     public void setName(String name) {
         this.name = name;
     }
-
-    /*
-          Health
-     */
 
     public int getHealth() {
         return health;
