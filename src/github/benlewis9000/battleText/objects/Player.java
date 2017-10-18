@@ -1,12 +1,10 @@
-package github.benlewis9000.battleText;
+package github.benlewis9000.battleText.objects;
 
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
-import static github.benlewis9000.battleText.Handlers.delay;
+import static github.benlewis9000.battleText.util.Handlers.delay;
 
 public class Player {
-
     private String name;
     private int health;
     private int maxHealth;
@@ -20,22 +18,13 @@ public class Player {
      * @param strength Modifier that affects players attack damage, increments after each win.
      * @param level WIP
      */
-
     public Player (String name, int health, int maxHealth, int strength, int level){
-
-        this.setName(name);
-
-        // Initialise maxHealth before health
-        this.setMaxHealth(maxHealth);
-        this.setHealth(health);
-
-        this.setStrength(strength);
-        this.setLevel(level);
+    	this.name = name;
+    	this.health = health;
+    	this.maxHealth = maxHealth;
+    	this.strength = strength;
+    	this.level = level;
     }
-
-    /*
-          Name
-     */
 
     public String getName() {
         return name;
@@ -45,27 +34,20 @@ public class Player {
         this.name = name;
     }
 
-    /*
-          Health
-     */
-
     public int getHealth() {
         return health;
     }
 
     public void setHealth(int health) {
-        if (health > this.getMaxHealth()) {
-            this.health = this.getMaxHealth();
-            System.out.println("// Health set to maxHealth " + this.getMaxHealth() + " //");
+        if (health > maxHealth) {
+            this.health = maxHealth;
+            System.out.println("// Health set to maxHealth " + maxHealth + " //");
+        } else {
+            this.health = health;
         }
-        else this.health = health;
 
        // DEBUG System.out.println(this.getName() + "'s Health is now " + this.getHealth());
     }
-
-    /*
-          Max Health
-     */
 
     public int getMaxHealth() {
         return maxHealth;
@@ -75,10 +57,6 @@ public class Player {
         this.maxHealth = maxHealth;
     }
 
-    /*
-          Strength
-     */
-
     public int getStrength() {
         return strength;
     }
@@ -87,17 +65,10 @@ public class Player {
         if (strength > 10){
             this.strength = 10;
             System.out.println("// Strength maxed, set to 10 //");
-        }
-        else {
+        } else {
             this.strength = strength;
         }
-
-        // DEBUG System.out.println(this.getName() + "'s Strength is now " + this.getStrength());
     }
-
-    /*
-          Level
-     */
 
     public int getLevel() {
         return level;
@@ -107,18 +78,16 @@ public class Player {
         this.level = level;
     }
 
-    /*          Player            */
-
 
     public void printStats (){
         String nme = this.getName();
 
-        int hth = this.getHealth();
+        int hp = this.getHealth();
         int str = this.getStrength();
         int lvl = this.getLevel();
 
         System.out.println("\n-*#   " + nme + "'s Stats   #*-");
-        System.out.println("    Health: " + String.valueOf(hth));
+        System.out.println("    Health: " + String.valueOf(hp));
         System.out.println("    Strength: " + String.valueOf(str));
         System.out.println("    Level: " + String.valueOf(lvl));
         System.out.println("#*-------------------*#\n");
@@ -126,11 +95,8 @@ public class Player {
     }
 
     public void attack(Enemy enemy){
-
-        // Announce Player's go
         System.out.println(this.getName().toUpperCase() + ":");
 
-        // Randomiser to see if attack hits
         int r = new Random().nextInt(14);
         int chance = r - enemy.getDifficulty();
 
@@ -164,22 +130,18 @@ public class Player {
     }
 
     public void incStrength(){
-        this.setStrength(this.getStrength()+1);
+        strength++;
 
         delay(500);
         System.out.println("\nYour strength has increased!\nNew Strength: " + this.getStrength());
     }
 
     public void levelUp(){
-        int newLvl = this.getLevel() + 1;
-        System.out.println("\n" + this.getName() + " has levelled up!\nNew level: " + newLvl);
-        this.setLevel(newLvl);
+        level++;
+        System.out.println("\n" + this.getName() + " has levelled up!\nNew level: " + level);
     }
 
     public boolean isDead(){
-        if (this.getHealth() <= 0){
-            return true;
-        }
-        else return false;
+        return health < 0;
     }
 }

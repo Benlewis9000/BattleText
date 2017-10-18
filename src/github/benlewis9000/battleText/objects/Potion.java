@@ -1,12 +1,8 @@
-package github.benlewis9000.battleText.potions;
+package github.benlewis9000.battleText.objects;
 
 public class Potion {
-
     String name;
     String description;
-    int roundsPotionLasts;
+    int duration; // in rounds
     int quantity;
-
-    
-
 }
