@@ -18,14 +18,6 @@ public class Enemy {
 	}
 
 	public void setDifficulty(int difficulty) {
-
-        /*
-			 Difficulty is used as a multiplier for;
-             - Health
-             - Attack strength
-             with the help of random values.
-         */
-
 		if (difficulty > 3) {
 			this.difficulty = 3;
 		} else if (difficulty < 1) {
